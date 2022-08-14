@@ -3,6 +3,15 @@ import PropTypes from 'prop-types'
 
 
 export default function Navbar(props) {
+  const redMode =()=>{
+    document.body.style.backgroundColor="#b31524";
+  }
+  const greenMode =()=>{
+    document.body.style.backgroundColor="#28885c";
+  }
+  const blueMode =()=>{
+    document.body.style.backgroundColor="#0a469f";
+  }
   return (
     <nav className={`navbar navbar-expand-lg bg-${props.mode} navbar-${props.mode}`}>
       <div className="container-fluid">
@@ -30,11 +39,19 @@ export default function Navbar(props) {
               </ul>
             </li>
           </ul>
-          {/* <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button className="btn btn-outline-primary" type="submit">Search</button>
-            </form> */}
-          <div className={`form-check form-switch text-${props.mode==='dark'?'light':'dark'}`}>
+          <div className='mx-2'>
+            <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off" onClick={redMode}/>
+              <label className="btn btn-outline-danger" htmlFor="btnradio1">Red</label>
+
+              <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autoComplete="off" onClick={greenMode} />
+              <label className="btn btn-outline-success" htmlFor="btnradio2">Green</label>
+
+              <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autoComplete="off" onClick={blueMode}/>
+              <label className="btn btn-outline-primary" htmlFor="btnradio3">Blue</label>
+            </div>
+          </div>
+          <div className={`form-check form-switch text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
             <input className="form-check-input" type="checkbox" onClick={props.toggleMode} role="switch" id="flexSwitchCheckDefault" />
             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable Dark Mode</label>
           </div>

@@ -30,6 +30,14 @@ export default function TextForm(props) {
         setText(newText.join(" "));
         props.showAlert("Cleared all the extra spaces","primary");
     }
+    const modText = (str) =>{
+        if(str.charAt(str.length-1)===' '){
+        return (str.substring(0,str.length-1))
+        }
+        else{
+            return str;
+        }     
+    }
     const [text, setText] = useState("Enter text here");
     return (
         <>
@@ -47,8 +55,8 @@ export default function TextForm(props) {
             </div>
             <div className="container my-3" style={{color: props.mode === 'dark' ? 'white' : 'black'}}>
                 <h2><b>Your text summary</b></h2>
-                <p>{text.split(" ").length} words and {text.length} characters</p>
-                <p>{0.008 * text.split(" ").length} Minute Read</p>
+                <p>{(text.length>0)?(modText(text).split(" ").length):"0"} words and {text.length} characters</p>
+                <p>{(text.length>0)?(0.008 * text.split(" ").length):"0"} Minute Read</p>
                 <h2><b>Preview</b></h2>
                 <p>{text.length>0?text:"ENTER SOMETHING TO PREVIEW"}</p>
             </div>
